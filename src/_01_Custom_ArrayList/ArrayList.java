@@ -57,7 +57,7 @@ public class ArrayList<T> {
 				copyarr[i] = arr[i];
 			}
 			if (i > loc) {
-				copyarr[i] = arr[i + 1];
+				copyarr[i-1] = arr[i];
 			} else {
 
 			}
