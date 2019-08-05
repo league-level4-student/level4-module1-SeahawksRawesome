@@ -39,16 +39,16 @@ public class Snake {
 		Location loc2 = null;
 		switch (currentDirection) {
 		case LEFT:
-		loc2 =	snake.set(head.getLocation().x += 1, head);
+			loc2 = new Location(head.getLocation().x - 1, head.getLocation().y);
 			break;
 		case RIGHT:
-
+			loc2 = new Location(head.getLocation().x + 1, head.getLocation().y);
 			break;
 		case UP:
-
+			loc2 = new Location(head.getLocation().x, head.getLocation().y - 1);
 			break;
 		case DOWN:
-
+			loc2 = new Location(head.getLocation().x, head.getLocation().y + 1);
 			break;
 
 		}
@@ -57,13 +57,11 @@ public class Snake {
 		// 2a. Update each snake segment to the location of the segment
 		// in front of it.
 		
-		for (int i = Snake.BODY_SIZE; i > 0; i--) {
-			if(i == Snake.BODY_SIZE) {
-				head.setLocation(head.getLocation().x += 1, head.getLocation().y += 1);
-			}
-			else {
-				//snake.set(i, );
-			}
+		for (int i = snake.size() - 1; i > 0; i--) {
+		
+	
+				snake.get(i).setLocation(snake.get(i-1).getLocation());
+			
 		}
 
 		// 3. set the location of the head to the new location calculated in step 1
@@ -136,8 +134,12 @@ public class Snake {
 		// 1. complete the method so it returns true if the head of the snake is outside
 		// of the window
 		// and false otherwise
-		// if(head.getLocation() > )
-		return false;
+		if(head.getLocation().x > 750 || head.getLocation().x < 0 || head.getLocation().y < 0 || head.getLocation().y > 600) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	public boolean isHeadCollidingWithBody() {
